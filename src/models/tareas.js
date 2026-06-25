@@ -1,24 +1,24 @@
 const mongoose = require('mongoose');
 
-const usuarioSchema = new mongoose.Schema({
-    email: {
+const tareaSchema = new mongoose.Schema({
+    titulo: {
         type: String,
         required: true,
         unique: true
     },
-    password: {
+    cuerpo: {
         type: String,
         required: true
     },
-    rol: {
+    usuario: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Rol', // Debe coincidir exactamente con el nombre del modelo de Rol
+        ref: 'Usuario', // Relaciona la tarea con un usuario específico
         required: true
     },
     fechaCreacion: {
         type: Date,
-        default: Date.now
+        default: Date.now // Quitamos los paréntesis ()
     }
 });
 
-module.exports = mongoose.model('Usuario', usuarioSchema);
+module.exports = mongoose.model('Tarea', tareaSchema);
