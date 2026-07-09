@@ -11,7 +11,9 @@ app.use(express.json());
 const usuarioRoutes = require('./src/routes/usuarioRoutes'); 
 const cuentaRoutes = require('./src/routes/cuentaRoutes'); 
 const transaccionRoutes = require('./src/routes/transaccionRoutes');
-
+app.get('/', (req, res) => {
+    res.send('🚀 ¡API Financiera corriendo con éxito en Vercel!');
+});
 // Usar rutas
 app.use('/api/transaccion', transaccionRoutes);
 app.use('/api/usuarios', usuarioRoutes);
