@@ -29,6 +29,7 @@ mongoose.connect(uri)
         //app.listen(PORT, () => {
          //   console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
         //});
+        module.exports = app;
     })
     .catch((error) => {
         console.error('❌ Error al conectar a MongoDB:', error.message);
