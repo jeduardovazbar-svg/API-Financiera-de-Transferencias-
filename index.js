@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 // Importar rutas
-const usuarioRoutes = require('./src/routes/usuarioRoutes'); // Ajusta la ruta si es necesario
+const usuarioRoutes = require('./src/routes/usuarioRoutes'); 
 const cuentaRoutes = require('./src/routes/cuentaRoutes'); 
 const transaccionRoutes = require('./src/routes/transaccionRoutes');
 
@@ -20,17 +20,16 @@ app.use('/api/cuenta', cuentaRoutes);
 // --- CONEXIÓN A MONGODB ---
 const uri = process.env.MONGO_URI; // Leer la variable de tu archivo .env
 
+// Conectar de forma global sin envolver la app en el .then()
 mongoose.connect(uri)
-    .then(() => {
-        console.log('✅ Conectado exitosamente a MongoDB');
-        
-        // Solo levantamos el servidor si la base de datos se conectó bien
-        const PORT = process.env.PORT || 3000;
-        //app.listen(PORT, () => {
-         //   console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
-        //});
-        module.exports = app;
-    })
-    .catch((error) => {
-        console.error('❌ Error al conectar a MongoDB:', error.message);
-    });
+    .then(() => console.log('✅ Conectado exitosamente a MongoDB'))
+    .catch((error) => console.error('❌ Error al conectar a MongoDB:', error.message));
+
+// Si quisieras probar local, descomenta esto, pero para Vercel no es necesario:
+// if (!process.env.VERCEL) {
+//     const PORT = process.env.PORT || 3000;
+//     app.listen(PORT, () => console.log(`🚀 Servidor en puerto ${PORT}`));
+// }
+
+// CRUCIAL: Siempre expórtalo en la raíz del archivo, fuera de cualquier función o promesa
+module.exports = app;
