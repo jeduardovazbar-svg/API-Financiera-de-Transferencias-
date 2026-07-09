@@ -9,7 +9,7 @@ app.use(express.json());
 
 // Importar rutas
 const usuarioRoutes = require('./src/routes/usuarioRoutes'); // Ajusta la ruta si es necesario
-const cuentaRoutes = require('./src/routes/cuentaRoutes');
+const cuentaRoutes = require('./src/routes/cuentaRoutes'); 
 const transaccionRoutes = require('./src/routes/transaccionRoutes');
 
 // Usar rutas
