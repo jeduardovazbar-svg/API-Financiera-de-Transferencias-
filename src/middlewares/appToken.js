@@ -1,22 +1,22 @@
 const verificarAppToken = (req, res, next) => {
   // 1. Intentar obtener el token desde la cabecera 'x-app-token' o 'Authorization'
-  const tokenRecibido = req.headers['x-app-token'];
+  const tokenRecibido = req.headers['app-token'];
 
-  // 2. Si el cliente no envió ningún token, rechazamos
+  // 2. Si el cliente no enviï¿½ ningï¿½n token, rechazamos
   if (!tokenRecibido) {
     return res.status(401).json({ 
-      mensaje: "Acceso denegado. Falta el token de aplicación en las cabeceras." 
+      mensaje: "Acceso denegado. Falta el token de aplicaciÃ³n en las cabeceras." 
     });
   }
 
   // 3. Comparar el token recibido con el que guardamos en las variables de entorno
   if (tokenRecibido !== process.env.APP_TOKEN) {
     return res.status(403).json({ 
-      mensaje: "Acceso denegado. El token de aplicación es inválido." 
+      mensaje: "Acceso denegado. El token de aplicacion es invÃ¡lido." 
     });
   }
 
-  // 4. Si el token es correcto, permitimos que la petición continúe a la ruta
+  // 4. Si el token es correcto, permitimos que la peticiï¿½n continï¿½e a la ruta
   next();
 };
 
