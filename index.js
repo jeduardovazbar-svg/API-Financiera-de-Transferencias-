@@ -1,4 +1,5 @@
 require('dotenv').config(); // Cargar las variables de entorno al inicio
+const helmet = require('helmet'); // IMPORTEMOS HELMET
 const express = require('express');
 const mongoose = require('mongoose'); // Importar Mongoose
 const appTokensito = require('./src/middlewares/appToken')
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
     res.send('🚀 ¡API Financiera corriendo con éxito en Vercel!');
 });
 // Usar rutas
+app.use(helmet()); // ahora le decimos a nuestra app que usemos helmet
 app.use('/api/transaccion', transaccionRoutes);
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/cuenta', cuentaRoutes);
